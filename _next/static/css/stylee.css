@@ -1,0 +1,74 @@
+.chilli-marquee
+{
+    animation: blink .4s infinite;
+    background-image: none !important;
+    
+}
+
+    @keyframes blink {
+    0% { background-color: #0096ff; }
+    50% { background-color: blue; }
+    100% { background-color: #0096ff; }
+  }
+
+@media (max-width: 600px) {
+    .main-text {
+        display: flex;
+        flex-direction: column;
+    }
+    
+     button {
+        font-size: 20px !important;
+    }
+    .marquee-text {
+        font-size: 15px !important;
+    }
+    
+    .marquee-track img {
+        width: 75px !important;
+        height: 70px !important;
+    }
+    
+    .chilli-marquee {
+        padding: 40px 0 !important;
+    }
+    
+    .h1.blk {
+        font-size: 36px !important;
+    }
+    .tokenomics_details {
+        width: 85%;
+        margin: 0 auto;
+    }
+    
+    .toke_details {
+        width: 100%;
+    }
+    
+    .tokenomics_top {
+        justify-content: center !important;
+        align-items: center;
+        width: 100%;
+    }
+    .tokenomics_bottom {
+        justify-content: center !important;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .block_chara .booby {
+        width: 80%;
+        position: unset;
+        position: relative;
+        top: 31px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .block_chara .booby {
+        top: 0px;
+        width: 100%;
+    }
+
+}
