@@ -6,9 +6,9 @@
 }
 
     @keyframes blink {
-    0% { background-color: #0096ff; }
-    50% { background-color: blue; }
-    100% { background-color: #0096ff; }
+    0% { background-color: #ffba44; }
+    50% { background-color: #ffd07d; }
+    100% { background-color: #ffba44; }
   }
 
 @media (max-width: 600px) {
