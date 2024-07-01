@@ -40,6 +40,254 @@
     <link href="https://fonts.googleapis.com/css?family=Baloo+2:400,800&amp;display=swap" rel="stylesheet" />
     <script src="_next/static/chunks/polyfills-c67a75d1b6f99dc8.js" noModule=""></script>
     <link rel="stylesheet" href="_next/static/css/stylee.css">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo.png">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="assets/css/plugins.css">
+    <link rel="stylesheet" href="assets/css/main.min.css">
+    <link rel="stylesheet" href="assets/css/uikit.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <!-- include scripts -->
+    <script src="assets/js/app-head.js"></script>
+    <script src="assets/js/uikit-components.js"></script>
+    <script src="assets/js/uikit.min.js"></script>
+    <script defer src="assets/js/swiper-bundle.min.js"></script>
+    <script defer src="assets/js/feather.min.js"></script>
+    <script defer src="assets/js/typed.min.js"></script>
+    <script defer src="assets/js/anime.min.js"></script>
+    <script defer src="assets/js/app.js"></script>
+    <script defer src="assets/js/swiper-helper.js"></script>
+    <script defer src="assets/js/typed-helper.js"></script>
+    <script defer src="assets/js/anime-helper.js"></script>
+    <script defer src="assets/js/anime-helper-defined-timelines.js"></script>
+
+    <!-- Page-Revealer -->
+    <script src="assets/js/tg-page-head.js"></script>
+    <style>
+        .gallery__area {
+            padding-bottom: 130px;
+        }
+
+        .gallery__thumb {
+            position: relative;
+        }
+
+        .gallery__thumb img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery__thumb img:hover {
+            transform: scale(1.1);
+        }
+
+        .loading-animation {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+    <script>
+        function loadNewImage(imgElement, newImageUrl) {
+            const loadingAnimation = document.getElementById('loading-animation');
+            const modal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+
+            loadingAnimation.style.display = 'block';
+
+            // Simulate loading time with a timeout
+            setTimeout(() => {
+                loadingAnimation.style.display = 'none';
+                modal.style.display = 'block';
+                modalImage.src = newImageUrl;
+            }, 2000); // Simulating a 2 second loading time
+        }
+
+        function scrollCarousel(direction) {
+            const carouselImages = document.querySelector('.carousel-images');
+            const scrollAmount = 210; // 200px (image width) + 10px (gap)
+
+            carouselImages.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+        function closeModal() {
+            const modal = document.getElementById('image-modal');
+            modal.style.display = 'none';
+        }
+
+    </script>
+    <style>
+        .carousel-container {
+            position: relative;
+            width: 640px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .carousel-images {
+            display: flex;
+            gap: 10px;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            cursor: grab;
+        }
+
+        .carousel-images img {
+            width: 200px;
+            height: 150px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .carousel-images img:hover {
+            transform: scale(1.1);
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .carousel-button.left {
+            left: 0;
+        }
+
+        .carousel-button.right {
+            right: 0;
+        }
+
+        .loading-animation {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .carousel-container.arkgal {
+            width: 100%;
+        }
+
+        .carousel-images img {
+            width: 75%;
+            height: 400px;
+            object-fit: cover !important;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content {
+            top: 18%;
+        }
+
+        .close {
+            top: 90px;
+        }
+
+        @media screen and (max-width: 480px) {
+
+
+            .carousel-images img {
+                width: 70%;
+                height: 260px;
+                object-fit: cover !important;
+            }
+
+            .carousel-container.arkgal {
+                padding-top: 60px;
+            }
+
+            .carousel {
+                height: 70vh;
+            }
+
+            .modal-content {
+                top: 40%;
+            }
+
+            .close {
+                top: 80px;
+            }
+        }
+    </style>
+
+
 </head>
 
 <body class="__className_aaf875" id="myDIV">
@@ -51,16 +299,18 @@
                     class="menu_button w-button">STORY</a><a href="index.html#TOK"
                     class="menu_button w-button">BASETARDNOMICS</a><a href="https://www.dextools.io/app/"
                     class="menu_button w-button">Chart</a></div>
-            <div class="menu_right" >
-                <div><a href="https://t.me/BASETARDENTRY" onclick="location.href='https://t.me/BASETARDENTRY'" target="_blank" class="socials tg w-button"></a></div>
-                    <a
-                    href="https://twitter.com/BASETARDED" onclick="location.href='https://twitter.com/BASETARDED'" target="_blank" class="socials twitter w-button"></a><a
-                    href="https://discord.gg/" target="_blank" class="socials dsc w-button"></a></div>
+            <div class="menu_right">
+                <div><a href="https://t.me/BASETARDENTRY" onclick="location.href='https://t.me/BASETARDENTRY'"
+                        target="_blank" class="socials tg w-button"></a></div>
+                <a href="https://twitter.com/BASETARDED" onclick="location.href='https://twitter.com/BASETARDED'"
+                    target="_blank" class="socials twitter w-button"></a><a href="https://discord.gg/" target="_blank"
+                    class="socials dsc w-button"></a>
+            </div>
         </div>
     </div>
     <main class="body" style="width: 100%;">
         <div class="wrapper">
-            <div class="section_hero">
+            <!-- <div class="section_hero">
                 <div id="particles-js" style="    position: absolute;
                 height: 100%;
                 width: 100%;">
@@ -80,6 +330,89 @@
                             BUY N<span style="font-family: 'Courier New', Courier, monospace;">O</span>W!!
                         </button></a>
                 </div>
+            </div> -->
+            <!-- <section class="gallery__area fix section-pb-130">
+                <div class="gallery__slider">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-9 col-lg-10 col-md-11">
+                                <div class="swiper-container gallery-active">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="gallery__item">
+                                                <div class="gallery__thumb">
+                                                    <a href="#" class="popup-image"
+                                                        onclick="showLoadingAnimation(this, 'assets/img/gallery/3.png')">
+                                                        <img src="assets/img/gallery/2.png" alt="img">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="gallery__item">
+                                                <div class="gallery__thumb">
+                                                    <a href="#" class="popup-image"
+                                                        onclick="showLoadingAnimation(this, 'assets/img/gallery/5.png')">
+                                                        <img src="assets/img/gallery/3.png" alt="img">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="gallery__item">
+                                                <div class="gallery__thumb">
+                                                    <a href="#" class="popup-image"
+                                                        onclick="showLoadingAnimation(this, 'assets/img/gallery/6.png')">
+                                                        <img src="assets/img/gallery/6.png" alt="img">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="gallery__item">
+                                                <div class="gallery__thumb">
+                                                    <a href="#" class="popup-image"
+                                                        onclick="showLoadingAnimation(this, 'assets/img/gallery/7.png')">
+                                                        <img src="assets/img/gallery/07.png" alt="img">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-scrollbar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+
+            <div class="carousel-container arkgal">
+                <div class="carousel">
+                    <div class="carousel-images">
+                        <img src="assets/img/gallery/2.png" alt="Image 1"
+                            onclick="loadNewImage(this, 'assets/img/gallery/3.png')">
+                        <img src="assets/img/gallery/2.png" alt="Image 2"
+                            onclick="loadNewImage(this, 'assets/img/gallery/3.png')">
+                        <img src="assets/img/gallery/2.png" alt="Image 3"
+                            onclick="loadNewImage(this, 'assets/img/gallery/6.png')">
+                        <img src="assets/img/gallery/2.png" alt="Image 4"
+                            onclick="loadNewImage(this, 'assets/img/gallery/7.png')">
+                        <img src="assets/img/gallery/2.png" alt="Image 5"
+                            onclick="loadNewImage(this, 'assets/img/gallery/4.png')">
+                        <img src="assets/img/gallery/2.png" alt="Image 6"
+                            onclick="loadNewImage(this, 'assets/img/gallery/4.png')">
+                        <img src="assets/img/gallery/2.png" alt="Image 7"
+                            onclick="loadNewImage(this, 'assets/img/gallery/4.png')">
+                    </div>
+                </div>
+                <button class="carousel-button left" onclick="scrollCarousel(-3)">&#9664;</button>
+                <button class="carousel-button right" onclick="scrollCarousel(3)">&#9654;</button>
+            </div>
+            <div id="loading-animation" class="loading-animation">Generating...</div>
+            <div id="image-modal" class="modal">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <img class="modal-content" id="modal-image">
             </div>
         </div>
         <div class="chilli-marquee">
@@ -107,8 +440,8 @@
             </div>
         </div>
         <div class="section_about"
-            style="background-image: url(200w.gif);box-shadow: inset 0 0 0 1000px #f98f046d; background-repeat: repeat; background-size:250px 270px ;"><img
-                src="./about.png" loading="lazy" alt="" class="cloud_right" />
+            style="background-image: url(200w.gif);box-shadow: inset 0 0 0 1000px #f98f046d; background-repeat: repeat; background-size:250px 270px ;">
+            <img src="./about.png" loading="lazy" alt="" class="cloud_right" />
             <div class="section_block_about_wrapper">
                 <div class="block_about">
                     <div class="h1 blk">BASETARD Story</div>
@@ -365,6 +698,28 @@
         // Replace "https://your-link-here.com" with the actual URL
         window.location.href = "https://app.uniswap.org/swap";
     }
+</script>
+<script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
+<script src="assets/js/plugins.js"></script>
+<script src="assets/js/ajax-form.js"></script>
+<script src="assets/js/main.js"></script>
+<script type="text/javascript">
+
+    $(window).on('load', function () {
+
+        setTimeout(function () {
+            $('body').addClass('loaded');
+        }, 200);
+
+        setTimeout(function () {
+            $('.cic-logo').addClass('cic-logo-animation');
+            $('.svg-elements-1').addClass('svg-elements-1-animation');
+            $('.svg-elements-2').addClass('svg-elements-2-animation');
+        }, 3000);
+
+
+    });
+
 </script>
 
 </html>
