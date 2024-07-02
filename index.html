@@ -168,21 +168,37 @@
 
         .carousel-button {
             position: absolute;
-            top: 50%;
+            top: 90%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0);
             color: white;
             border: none;
             padding: 10px;
             cursor: pointer;
         }
 
-        .carousel-button.left {
-            left: 0;
+        @media screen and (max-width: 480px) {
+
+            .carousel-button img {
+            width: 70px;
+            height: auto;
+        }
+            .carousel-button.left {
+            left: 100px !important;
         }
 
         .carousel-button.right {
-            right: 0;
+            right: 100px !important;
+        }
+            
+        }
+
+        .carousel-button.left {
+            left: 600px;
+        }
+
+        .carousel-button.right {
+            right: 600px;
         }
 
         .loading-animation {
@@ -409,7 +425,7 @@
                         <img src="./4.png" alt="Image 4"
                             onclick="loadNewImage(this, './4a.png')">
                         <img src="./5.png" alt="Image 5"
-                            onclick="loadNewImage(this, './5a.png')">
+                            onclick="loadNewImage(this, './5b.png')">
                         <img src="./6.png" alt="Image 6"
                             onclick="loadNewImage(this, './6a.png')">
                         <img src="./7.png" alt="Image 7"
@@ -420,8 +436,13 @@
                             onclick="loadNewImage(this, './9a.png')">
                     </div>
                 </div>
-                <button class="carousel-button left" onclick="scrollCarousel(-3)">&#9664;</button>
-                <button class="carousel-button right" onclick="scrollCarousel(3)">&#9654;</button>
+                <!-- <a class="carousel-button left" onclick="scrollCarousel(-3)"> -->
+                <button class="carousel-button left" onclick="scrollCarousel(-1)">
+                    <img src="./left.png" width="120" height="auto">
+                </button>
+                <button class="carousel-button right" onclick="scrollCarousel(1)">
+                    <img src="./right.png" width="120" height="auto">
+                </button>
             </div>
             <div id="loading-animation" class="loading-animation">Generating...</div>
             <div id="image-modal" class="modal">
