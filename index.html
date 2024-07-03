@@ -106,6 +106,8 @@
             const loadingAnimation = document.getElementById('loading-animation');
             const modal = document.getElementById('image-modal');
             const modalImage = document.getElementById('modal-image');
+            document.getElementById('image-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
 
             loadingAnimation.style.display = 'block';
 
@@ -129,6 +131,8 @@
         function closeModal() {
             const modal = document.getElementById('image-modal');
             modal.style.display = 'none';
+            document.getElementById('image-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
 
     </script>
@@ -265,7 +269,10 @@
             display: block;
             width: 80%;
             max-width: 700px;
+            
+            
         }
+   
 
         .close {
             position: absolute;
@@ -310,7 +317,7 @@
 
             .carousel {
                 width: 100%;
-                height: 45vh;
+                height: 63vh;
             }
 
             .modal-content {
